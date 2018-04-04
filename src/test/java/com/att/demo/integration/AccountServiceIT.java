@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.att.demo.model.Account;
+import com.att.demo.model.User;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -12,6 +13,8 @@ import io.restassured.specification.RequestSpecification;
 public class AccountServiceIT {
 	
 	private String uri ="/accounts";
+	
+	private String users_uri ="/users";
 		
 	@Before
 	public void setUp() throws Exception {
@@ -56,6 +59,20 @@ public class AccountServiceIT {
 	@Test
 	public void testCreateUser_failure() {
 		//TO-DO	
+		
+		User user = new User();
+		
+		user.setId(54321);
+		user.setAge(30);
+		user.setName("test");
+		user.setAccountId(33333);
+		
+		givenBaseSpec()
+				.body(user)
+				.when()
+					.post(users_uri)
+					.then()
+						.statusCode(404);
 	}
 	
 	@Test
