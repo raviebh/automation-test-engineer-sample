@@ -16,7 +16,8 @@ public class AccountServiceIT {
 	@Before
 	public void setUp() throws Exception {
 		String baseURI = System.getProperty("BASE_URL");
-		RestAssured.baseURI = baseURI + "/api";
+		//RestAssured.baseURI = baseURI + "/api";
+		RestAssured.baseURI = "http://localhost:8080/api";
 	}
 	
 	private RequestSpecification givenBaseSpec() {
@@ -55,7 +56,22 @@ public class AccountServiceIT {
 	
 	@Test
 	public void testCreateUser_failure() {
-		//TO-DO	
+		Account account = new Account();
+		account.setId(12345);
+		account.setName("test");
+		
+		givenBaseSpec()
+		.body(account)
+		.when()
+			.post(uri)
+			.then()
+			.statusCode(400);
+
+	givenBaseSpec()
+	.when()
+		.get(uri + "/12345")
+		.then()
+			.statusCode(401);
 	}
 	
 	@Test
