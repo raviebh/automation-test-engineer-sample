@@ -53,7 +53,7 @@ public class AccountResourceComponentTest {
 			
 		Account account = new Account();
 		account.setId(54321);
-		account.setName("test-create");
+		account.setName("test-create_1");
 		
 		givenBaseSpec()
 			.body(account)
@@ -64,9 +64,54 @@ public class AccountResourceComponentTest {
 	}
 	
 	@Test
+	public void testCreateAccount_NoId_success() {
+		
+			
+		Account account = new Account();
+		//account.setId();
+		account.setName("test-create_NoID");
+		
+		givenBaseSpec()
+			.body(account)
+			.when()
+				.post(uri)
+				.then()
+					.statusCode(201);
+	}
+	
+	
+	@Test
+	public void testCreateAccount_NoIdAndName_success() {
+		
+			
+		Account account = new Account();
+		//account.setId(54321);
+		//account.setName("test-create");
+		
+		givenBaseSpec()
+			.body(account)
+			.when()
+				.post(uri)
+				.then()
+					.statusCode(201);
+	}
+	
+	
+	@Test
 	public void testCreateUser_failure() {
 		//TO-DO	
+		Account account = new Account();
+		account.setId(54321);
+		account.setName("Account1");
+		
+		givenBaseSpec()
+			.body(account)
+			.when()
+				.post(uri)
+				.then()
+					.statusCode(409);
 	}
+	
 	
 	@Test
 	public void testGetAccount_success() {
@@ -89,5 +134,66 @@ public class AccountResourceComponentTest {
 				.statusCode(200);
 	}
 	
+	
+	@Test
+	public void testGetAccount_NotFound() {
+		
+		Account account = new Account();
+		account.setId(12345);
+		account.setName("test-get");
+		
+		givenBaseSpec()
+			.body(account)
+			.when()
+				.post(uri)
+				.then()
+				.statusCode(201);
+
+		givenBaseSpec()
+		.when()
+			.get(uri + "/99999")
+			.then()
+				.statusCode(404);
+	}
+
+	
+	
+	
+	
+	/*@Test
+	public void testCreateUser_success() {
+		
+			
+		User user = new User();
+		user.setId(10);
+		user.setName(TestUser);
+		user.setAge(50);
+		user.setAccountId(Account1);
+		
+		givenBaseSpec()
+			.body(account)
+			.when()
+				.post(uri)
+				.then()
+					.statusCode(201);
+	}
+	
+	@Test
+	/*public void testCreateUser_Failure400() {
+		
+			
+		User user = new User();
+		user.setId(10);
+		user.setName(TestUser);
+		user.setAge(50);
+		user.setAccountId(Account1);
+		
+		givenBaseSpec()
+			.body(account)
+			.when()
+				.post(uri)
+				.then()
+					.statusCode(201);
+	}*/
 	
 }
