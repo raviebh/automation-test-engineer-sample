@@ -11,6 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.att.demo.model.Account;
+import com.jayway.jsonpath.JsonPath;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -20,6 +21,7 @@ import io.restassured.specification.RequestSpecification;
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AccountResourceComponentTest {
+	String id;
 	@LocalServerPort
 	protected int randomServerPort;
 	
@@ -42,9 +44,10 @@ public class AccountResourceComponentTest {
 		
 		givenBaseSpec()
 				.when()
-				.get(uri)
+				.get("http://localhost:8080/api/accounts")
 				.then()
-					.statusCode(200);
+					.statusCode(200)
+					.extract().response().prettyPrint();
 	}
 	
 	@Test
@@ -58,15 +61,17 @@ public class AccountResourceComponentTest {
 		givenBaseSpec()
 			.body(account)
 			.when()
-				.post(uri)
+				.post("http://localhost:8080/api/accounts")
 				.then()
 					.statusCode(201);
+		               
+		JsonPath path =new JsonPath(Str);
+		  id=path.getString("id");
+		 System.out.println(id);
+		 		
 	}
 	
-	@Test
-	public void testCreateUser_failure() {
-		//TO-DO	
-	}
+	
 	
 	@Test
 	public void testGetAccount_success() {
@@ -78,16 +83,46 @@ public class AccountResourceComponentTest {
 		givenBaseSpec()
 			.body(account)
 			.when()
-				.post(uri)
+				.post("http://localhost:8080/api/accounts")
 				.then()
-				.statusCode(201);
+				.statusCode(201)
+		 .extract().response().prettyPrint();
 
 		givenBaseSpec()
 		.when()
-			.get(uri + "/12345")
+			.get("http://localhost:8080/api/accounts" + "/12345")
 			.then()
-				.statusCode(200);
+				.statusCode(200)
+		 .extract().response().prettyPrint();
+	}
+	@Test
+	public void getbyid(){
+		given()
+		 .pathParam("getAccount",id)
+		 
+	   .contentType(ContentType.JSON)
+	   .when().put("http://localhost:8080/index.html#!/account/{key}")
+	   .then()
+	   .body("name",is("Sweety"))
+	   .extract().response().prettyPrint();
+		
+	}
+	@Test
+	public void getbyname(){
+		given()
+		 
+	   .contentType(ContentType.JSON)
+	   .when().put("http://localhost:8080/index.html#!/account/")
+	   .then()
+	   .body("Name",isequalto("Sweety"))
+	   .extract().response().prettyPrint();
+		
+	}
+	
+		
+		
 	}
 	
 	
-}
+	
+
