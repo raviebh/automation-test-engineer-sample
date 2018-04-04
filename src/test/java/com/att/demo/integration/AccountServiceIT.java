@@ -15,8 +15,8 @@ public class AccountServiceIT {
 		
 	@Before
 	public void setUp() throws Exception {
-		String baseURI = System.getProperty("BASE_URL");
-		RestAssured.baseURI = baseURI + "/api";
+		String baseURI = System.getProperty("http://localhost:8080/index.html#");
+		RestAssured.baseURI = baseURI + "/default";
 	}
 	
 	private RequestSpecification givenBaseSpec() {
@@ -42,8 +42,8 @@ public class AccountServiceIT {
 		
 			
 		Account account = new Account();
-		account.setId(54321);
-		account.setName("test-create");
+		account.setId(3456);
+		account.setName("Karth");
 		
 		givenBaseSpec()
 			.body(account)
@@ -62,8 +62,8 @@ public class AccountServiceIT {
 	public void testGetAccount_success() {
 		
 		Account account = new Account();
-		account.setId(12345);
-		account.setName("test-get");
+		account.setId(3456);
+		account.setName("Karth");
 		
 		givenBaseSpec()
 			.body(account)
@@ -74,7 +74,7 @@ public class AccountServiceIT {
 
 		givenBaseSpec()
 		.when()
-			.get(uri + "/12345")
+			.get(uri + "/3456")
 			.then()
 				.statusCode(200);
 	}
