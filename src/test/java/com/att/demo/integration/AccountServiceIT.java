@@ -38,6 +38,15 @@ public class AccountServiceIT {
 	}
 	
 	@Test
+	public void testfindAllAccount_wronguri_fail() {
+		
+		givenBaseSpec()
+				.when()
+				.get(uri + "123")
+				.then()
+					.statusCode(400);
+	}
+	@Test
 	public void testCreateAccount_success() {
 		
 			
