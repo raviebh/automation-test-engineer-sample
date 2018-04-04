@@ -12,6 +12,7 @@ import io.restassured.specification.RequestSpecification;
 public class AccountServiceIT {
 	
 	private String uri ="/accounts";
+	private String account1;
 		
 	@Before
 	public void setUp() throws Exception {
@@ -55,7 +56,13 @@ public class AccountServiceIT {
 	
 	@Test
 	public void testCreateUser_failure() {
-		//TO-DO	
+		givenBaseSpec()
+		.body(account1)
+		.when()
+			.post(uri)
+			.then()
+				.statusCode(404);
+		
 	}
 	
 	@Test

@@ -63,9 +63,18 @@ public class AccountResourceComponentTest {
 					.statusCode(201);
 	}
 	
+	
+
 	@Test
 	public void testCreateUser_failure() {
-		//TO-DO	
+		
+		
+		givenBaseSpec()
+		.body(account)
+		.when()
+			.post(uri1)
+			.then()
+			.statusCode(404);
 	}
 	
 	@Test
@@ -87,7 +96,11 @@ public class AccountResourceComponentTest {
 			.get(uri + "/12345")
 			.then()
 				.statusCode(200);
+		
+		
+		
+	}	
 	}
 	
 	
-}
+
