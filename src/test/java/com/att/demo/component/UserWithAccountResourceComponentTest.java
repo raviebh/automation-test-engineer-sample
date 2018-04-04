@@ -20,7 +20,7 @@ import io.restassured.specification.RequestSpecification;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AccountResourceComponentTest {
+public class UserWithAccountResourceComponentTest {
 	@LocalServerPort
 	protected int randomServerPort;
 	
@@ -66,22 +66,10 @@ public class AccountResourceComponentTest {
 	}
 	
 	@Test
-	public void testCreateUser_failure() {
+	public void testCreateAccount_failure() {
 		//TO-DO
 		
-		User user = new User();
-		
-		user.setId(54321);
-		user.setAge(30);
-		user.setName("test");
-		user.setAccountId(33333);
-		
-		givenBaseSpec()
-				.body(user)
-				.when()
-					.post(users_uri)
-					.then()
-						.statusCode(404);
+
 	}
 	
 	@Test
@@ -105,5 +93,49 @@ public class AccountResourceComponentTest {
 				.statusCode(200);
 	}
 	
+	@Test
+	public void testCreateUserWithAccount_success() {
+		
+		User user = new User();
+		
+		user.setId(54321);
+		user.setAge(30);
+		user.setName("test");
+		user.setAccountId(12345);
+		
+		givenBaseSpec()
+				.body(user)
+				.when()
+					.post(users_uri)
+					.then()
+						.statusCode(201);
+		
+		
+	}
+	@Test
+	public void GetUserAccount_success() {
+		
+		User user = new User();
+		
+		user.setId(54321);
+		user.setAge(30);
+		user.setName("test");
+		user.setAccountId(12345);
+		
+		
+		givenBaseSpec()
+			.body(user)
+			.when()
+				.post(users_uri)
+				.then()
+				.statusCode(201);
+
+		givenBaseSpec()
+		.when()
+			.get(users_uri + "/12345" + "/54321")
+			.then()
+				.statusCode(200);
+	}
+
 	
 }
