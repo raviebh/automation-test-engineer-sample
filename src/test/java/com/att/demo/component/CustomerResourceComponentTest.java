@@ -39,7 +39,7 @@ public class CustomerResourceComponentTest {
 	}
 	
 	@Test
-	public void findUser(){
+	public void findUserSuccess(){
 		givenBaseSpec()
 			.get(uri+"/1/1")
 			.then()
