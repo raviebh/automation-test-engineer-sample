@@ -3,7 +3,6 @@ package com.att.demo.component;
 import java.net.InetAddress;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.context.embedded.LocalServerPort;

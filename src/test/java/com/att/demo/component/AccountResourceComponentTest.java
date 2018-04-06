@@ -28,6 +28,7 @@ public class AccountResourceComponentTest {
 	@Before
 	public void setUp() throws Exception {
 		RestAssured.baseURI = "http://" + InetAddress.getLocalHost().getHostName() + ":" + randomServerPort + "/api";
+		System.out.println(RestAssured.baseURI);
 	}
 	
 	private  RequestSpecification givenBaseSpec() {
@@ -37,7 +38,7 @@ public class AccountResourceComponentTest {
 					.contentType(ContentType.JSON);
 	}
 	
-	@Test
+	@Test()
 	public void testfindAllAccount_success() {
 		
 		givenBaseSpec()
@@ -48,12 +49,20 @@ public class AccountResourceComponentTest {
 	}
 	
 	@Test
+	public void findAccount(){
+		givenBaseSpec()
+			.get(uri+"/2")
+			.then()
+				.statusCode(200);
+	}
+	
+	@Test
 	public void testCreateAccount_success() {
 		
 			
 		Account account = new Account();
-		account.setId(54321);
-		account.setName("test-create");
+		account.setId(1);
+		account.setName("TestAccount");
 		
 		givenBaseSpec()
 			.body(account)

@@ -10,11 +10,8 @@ description = "An User domain object")
 public class User implements Serializable{
 	
 	private long id;
-	
 	private String name;
-	
 	private int age;
-	
 	private int accountId;
 	
 	
@@ -82,7 +79,5 @@ public class User implements Serializable{
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-	
-	
 
 }
