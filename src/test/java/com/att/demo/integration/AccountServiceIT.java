@@ -1,5 +1,8 @@
 package com.att.demo.integration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,8 +35,24 @@ public class AccountServiceIT {
 		
 		givenBaseSpec()
 				.when()
-				.get(uri)
-				.then()
-					.statusCode(200);
+					.get(uri)
+						.then()
+							.statusCode(200);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testfindAccountResource_success() {
+		
+		Map<String,Long> info = new HashMap<>();
+		info.put("accountId", 54321L);
+		info.put("userId", 3105L);
+
+		givenBaseSpec()
+			.pathParameters(info)
+				.when()
+					.get(uri)
+						.then()
+							.statusCode(200);
 	}
 }
