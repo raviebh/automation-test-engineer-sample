@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.att.demo.model.Account;
+import com.att.demo.model.User;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -19,11 +19,11 @@ import io.restassured.specification.RequestSpecification;
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AccountResourceComponentTest {
+public class CustomerResourceComponentTest {
 	@LocalServerPort
 	protected int randomServerPort;
 	
-	private String uri ="/accounts";
+	private String uri ="/users";
 	
 	@Before
 	public void setUp() throws Exception {
@@ -38,34 +38,24 @@ public class AccountResourceComponentTest {
 					.contentType(ContentType.JSON);
 	}
 	
-	@Test()
-	public void testfindAllAccount_success() {
-		
-		givenBaseSpec()
-				.when()
-				.get(uri)
-				.then()
-					.statusCode(200);
-	}
-	
 	@Test
-	public void findAccount(){
+	public void findUserSuccess(){
 		givenBaseSpec()
-			.get(uri+"/2")
+			.get(uri+"/1/1")
 			.then()
 				.statusCode(200);
 	}
 	
 	@Test
-	public void testCreateAccount_success() {
+	public void testCreateUser_success() {
 		
-			
-		Account account = new Account();
-		account.setId(1);
-		account.setName("TestAccount");
-		
+		User user = new User();
+		user.setId(10);
+		user.setName("Srini");
+		user.setAge(32);
+		user.setAccountId(10);
 		givenBaseSpec()
-			.body(account)
+			.body(user)
 			.when()
 				.post(uri)
 				.then()
