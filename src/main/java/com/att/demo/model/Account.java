@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 description = "An Account domain object")
 public class Account implements Serializable {
 
-	long id;
+	private long id;
 	
 	private String name;
 	
@@ -43,19 +43,10 @@ public class Account implements Serializable {
 
 	@ApiModelProperty(
             access = "public",
-            name = "Firstname",
+            name = "name",
             required = true,
             value = "account name (String)")
-	public String getFirstName() {
-		return name;
-	}
-	
-	@ApiModelProperty(
-            access = "public",
-            name = "Lastname",
-            required = true,
-            value = "account name (String)")
-	public String getLastName1() {
+	public String getName() {
 		return name;
 	}
 
@@ -90,15 +81,8 @@ public class Account implements Serializable {
 		return "Account [id=" + id + ", name=" + name + "]";
 	}
 
-	public void setFirstName(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setLastName(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 }
+
+
+Customer.Java
