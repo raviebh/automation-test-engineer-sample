@@ -1,5 +1,7 @@
 package com.att.demo.component;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+
 import java.net.InetAddress;
 
 import org.junit.Before;
@@ -14,6 +16,8 @@ import com.att.demo.model.Account;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 @RunWith(SpringRunner.class)
@@ -62,5 +66,20 @@ public class AccountResourceComponentTest {
 				.then()
 					.statusCode(201);
 	}
+	
+	@Test
+	//Validate get accountId Api
+	public void testGetAccount_success() {
+		givenBaseSpec()
+			.pathParam("accountId", 1)
+			.when()
+				.get("/accounts/{accountId}")
+				.then()
+					.statusCode(200).and()
+	                .contentType(ContentType.JSON).assertThat().body("content.name", equalTo("Account1"));
+	                		
+	}
+	
+	
 	
 }
