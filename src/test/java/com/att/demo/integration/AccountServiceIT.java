@@ -29,7 +29,15 @@ public class AccountServiceIT {
 					.contentType(ContentType.JSON)
 					;
 	}
-	
+	@Test
+	public void testfindAllUsers_success() {
+		
+		givenBaseSpec()
+				.when()
+				.get(uri)
+				.then()
+					.statusCode(200);
+	}
 	
 	@Test
 	public void validatePost() {
