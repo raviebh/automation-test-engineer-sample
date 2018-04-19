@@ -6,11 +6,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.att.demo.model.Billing;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 
 
-public class Billing {
+public class BillingTest {
 private String uri = "/Billings";
 
 @BeforeClass
@@ -33,7 +35,7 @@ public void getbilling() {
 @DataProvider(name="validBilling")
 public Object[][] createData(){
 	return new Object[][] {
-		{ new  Billing(345,"shet","shsi")
+		{ new  Billing(12,"sgshs","sgsh")
 	},
 };
 }
@@ -61,9 +63,9 @@ public void postBilling(Billing billing) {
 	.get("/billings/{id}")
 	.then()
 	.statusCode(200)
-	.body("accountNo",is(accountNo))
-	.body("FirstName",is(billing.getFirstName))
-	.body("LastName",is(billing.getLastName));
+	.body("accountNo",is(billing.getaccountNo()))
+	.body("FirstName",is(billing.getFirstName()))
+	.body("LastName",is(billing.getLastName()));
 	}
 
 
@@ -77,7 +79,7 @@ public void validPostBilling() {
 			.post(uri)
 			.then()
 			.statuscode(200)
-			.body("accountNo",is(billing.getaccountNo))
+			.body("accountNo",is(billing.getaccountNo()))
 			.body("FirstName",is(billing.getFirstName()))
 			.body("LastName",is(billing.getLastName()))
 			.extract()
@@ -89,15 +91,15 @@ public void validPostBilling() {
 	.then()
 	.statusCode(200)
 	.body("accountNo",is(accountNo))
-	.body("FirstName",is(billing.getFirstName))
-	.body("LastName",is(billing.getLastName));
+	.body("FirstName",is(billing.getFirstName()))
+	.body("LastName",is(billing.getLastName()));
 	
 }
 
 
 @Test(priority=3)
 public void negativePostBilling() {
-	Billing billing = new Billing( ," "," ");
+	Billing billing = new Billing(0,""," ");
 	RestAssured.given()
 			.accept(ContentType.JSON)
 			.contentType(ContentType.JSON)
@@ -105,7 +107,7 @@ public void negativePostBilling() {
 			.when()
 			.post(uri)
 			.then()
-			.statusCode(201)
+			.statusCode(400)
 			.body("message", is("Fields cannot be empty"));
 	
 }

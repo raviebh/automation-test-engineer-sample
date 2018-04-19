@@ -8,7 +8,7 @@ import com.att.demo.model.Billing;
 
 public interface BillingService {
 	
-	Billing findByaccountNo(long accountNo);
+	Billing findByaccountNo(int accountNo);
 	
 	Billing findByFirstName(String FirstName);
 	Billing findByLastName(String LastName);

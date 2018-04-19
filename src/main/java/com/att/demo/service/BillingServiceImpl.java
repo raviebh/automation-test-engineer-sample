@@ -27,7 +27,7 @@ public  class BillingServiceImpl implements BillingService{
 		return billings;
 	}
 	
-	public Billing findByaccountNo(long accountNo) {
+	public Billing findByaccountNo(int accountNo) {
 		for(Billing billing : billings){
 			if(billing.getaccountNo() == accountNo){
 				return billing;
@@ -75,11 +75,13 @@ public  class BillingServiceImpl implements BillingService{
 	
 	private static List<Billing> populateDummyAccounts(){
 		List<Billing> billings = new ArrayList<Billing>();
-		billings.add(new Billing(counter.incrementAndGet(),"firstName","lastName"));
-		billings.add(new Billing(counter.incrementAndGet(),"firstName","lastName"));
-		billings.add(new Billing(counter.incrementAndGet(),"firstName","lastName"));
+		billings.add(new Billing());
+		billings.add(new Billing());
+		billings.add(new Billing());
 		return billings;
 	}
+
+	
 
 	
 

@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 description = "An Account domain object")
 public class Billing implements Serializable {
 
-	private long accountNo;
+	private int accountNo;
 	
 	private String FirstName;
 	private String LastName;
@@ -22,9 +22,9 @@ public class Billing implements Serializable {
 		super();
 	}
 	
-	public Billing(long accountNo, String FirstName, String LastName) {
+	public Billing(int accountNo, String FirstName, String LastName) {
 		super();
-		this.accountNo = accountNo;
+		this.accountNo =accountNo ;
 		this.FirstName = FirstName;
 		this.LastName = LastName;
 	}
@@ -39,7 +39,7 @@ public class Billing implements Serializable {
 	}
 	
 
-	public void setaccountNo(long accountNo) {
+	public void setaccountNo(int accountNo) {
 		this.accountNo = accountNo;
 	}
 
