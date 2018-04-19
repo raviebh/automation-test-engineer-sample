@@ -10,8 +10,9 @@ description = "An Account domain object")
 public class Account implements Serializable {
 
 	private long id;
-	
 	private String name;
+	
+	
 	
 	/**
      * Default Constructor 
