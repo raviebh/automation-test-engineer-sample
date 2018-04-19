@@ -18,3 +18,5 @@ public interface AccountService {
 	boolean isAccountExist(Account account);
 	
 }
+
+
