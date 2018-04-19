@@ -15,7 +15,8 @@ public class AccountServiceIT {
 		
 	@Before
 	public void setUp() throws Exception {
-		String baseURI = System.getProperty("BASE_URL");
+		String baseURI = "http://localhost:8080";
+				//System.getProperty("BASE_URL");
 		RestAssured.baseURI = baseURI + "/api";
 	}
 	
@@ -36,4 +37,5 @@ public class AccountServiceIT {
 				.then()
 					.statusCode(200);
 	}
+	
 }
