@@ -17,6 +17,7 @@ private String uri = "/Billings";
 public static void init() {
 	RestAssured.baseURI ="http://localhost:8080";
 }
+
 @Test(priority=0)
 public void getbilling() {
 	RestAssured.given()
@@ -63,6 +64,8 @@ public void postBilling(Billing billing) {
 	.body("FirstName",is(billing.getFirstName))
 	.body("LastName",is(billing.getLastName));
 	}
+
+
 @Test(priority=2)
 public void validPostBilling() {
 	Billing billing = new Billing(234,"shus","shsjd");
