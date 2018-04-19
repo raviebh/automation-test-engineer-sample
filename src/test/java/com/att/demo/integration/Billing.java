@@ -41,7 +41,7 @@ public Object[][] createData(){
 
 @Test(priority=1,dataProvider="validBilling")
 public void postBilling(Billing billing) {
-	String accountNo=given()
+	String id=given()
 	.accept(ContentType.JSON)
 	.contentType(ContentType.JSON)
 	.body(billing)
@@ -49,15 +49,16 @@ public void postBilling(Billing billing) {
 	.post(uri)
 	.then()
 	.statusCode(201)
+	.body("accountNo",is(billing.getaccountNo))
 	.body("FirstName",is(billing.getFirstName()))
 	.body("LastName",is(billing.getLastName()))
 	.extract()
-	.path("accountNo");
+	.path("id");
 	
 	RestAssured.given()
-	.pathParam("accountNo",accountNo)
+	.pathParam("id",id)
 	.when()
-	.get("/billings/{accountNo}")
+	.get("/billings/{id}")
 	.then()
 	.statusCode(200)
 	.body("accountNo",is(accountNo))
@@ -76,14 +77,15 @@ public void validPostBilling() {
 			.post(uri)
 			.then()
 			.statuscode(200)
+			.body("accountNo",is(billing.getaccountNo))
 			.body("FirstName",is(billing.getFirstName()))
 			.body("LastName",is(billing.getLastName()))
 			.extract()
-			.path("accountNo");
+			.path("id");
 	given()
-	.pathParam("accountNo",accountNo)
+	.pathParam("id",id)
 	.when()
-	.get("/billings/{accountNo}")
+	.get("/billings/{id}")
 	.then()
 	.statusCode(200)
 	.body("accountNo",is(accountNo))
