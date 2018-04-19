@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 		private long id;
 		
-		private String name;
+		//private String name;
 		
 		private String FirstName;
 		
@@ -60,11 +60,11 @@ import io.swagger.annotations.ApiModelProperty;
 	            required = true,
 	            value = "account name (String)")
 		public String getName() {
-			return name;
+			return FirstName;
 		}
 
 		public void setName(String name) {
-			this.name = name;
+			this.FirstName = name;
 		}
 
 		@Override
