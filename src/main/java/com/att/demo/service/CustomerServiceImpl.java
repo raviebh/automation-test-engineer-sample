@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.att.demo.model.Customer;
 
 
-
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService{
 	

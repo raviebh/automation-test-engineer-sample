@@ -37,7 +37,7 @@ public class CustomerResourceComponentTest {
 					.contentType(ContentType.JSON);
 	}
 	
-	// Test for get all customers  
+	 // Test for get all customers  
 	
 	@Test
 	public void testfindAllCustomers_success() {

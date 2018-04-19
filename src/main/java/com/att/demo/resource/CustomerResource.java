@@ -97,6 +97,7 @@ public interface CustomerResource {
 					@ApiResponse(code = 201, message = "Created"),
 					@ApiResponse(code = 409, message = "Conflict")					
 					})
+	
 	public Response createCustomer(
 				@ApiParam(value = "User to be created", required = true) 
 				Customer customer,

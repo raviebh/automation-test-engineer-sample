@@ -20,6 +20,7 @@ public class CustomerResponse extends Resource<Customer> {
 	public CustomerResponse(Customer content) {
 		super(content);
 	}
+	
 
     /**
      * This method gets the content of the Account Response 
