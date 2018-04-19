@@ -11,7 +11,8 @@ public class Customer implements Serializable {
 
 	private long id;
 	
-	private String name;
+	private String firstName;
+	private String lastName;
 	
 	/**
      * Default Constructor 
@@ -21,10 +22,11 @@ public class Customer implements Serializable {
 		super();
 	}
 	
-	public Customer(long id, String name) {
+	public Customer(long id, String firstName,String lastName) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 	
 	@ApiModelProperty(
@@ -43,15 +45,29 @@ public class Customer implements Serializable {
 
 	@ApiModelProperty(
             access = "public",
-            name = "name",
+            name = "firstName",
             required = true,
-            value = "Customer name (String)")
-	public String getName() {
-		return name;
+            value = "Customer first name (String)")
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	
+	@ApiModelProperty(
+            access = "public",
+            name = "lastName",
+            required = true,
+            value = "Customer last name (String)")
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	@Override
@@ -78,7 +94,7 @@ public class Customer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + "]";
+		return "Customer [id=" + id + ", FirstName=" + firstName +", LastName="+lastName+ "]";
 	}
 
 

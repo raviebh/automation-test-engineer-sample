@@ -57,7 +57,8 @@ public class CustomerResourceComponentTest {
 			
 		Customer customer = new Customer();
 		customer.setId(54321);
-		customer.setName("test-create");
+		customer.setFirstName("test-create-first");
+		customer.setLastName("test-create-last");
 		
 		givenBaseSpec()
 			.body(customer)
@@ -76,7 +77,8 @@ public class CustomerResourceComponentTest {
 				
 			Customer customer = new Customer();
 			customer.setId(54321);
-			customer.setName("test-create");
+			customer.setFirstName("test-create-first");
+			customer.setLastName("test-create-last");
 			
 			givenBaseSpec()
 				.body(customer)
@@ -94,7 +96,8 @@ public class CustomerResourceComponentTest {
 				
 			Customer customer = new Customer();
 			customer.setId(1);
-			customer.setName("test-create");
+			customer.setFirstName("test-create-first");
+			customer.setLastName("test-create-last");
 			
 			givenBaseSpec()
 				.body(customer)
