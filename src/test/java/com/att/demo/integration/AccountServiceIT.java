@@ -36,4 +36,5 @@ public class AccountServiceIT {
 				.then()
 					.statusCode(200);
 	}
+
 }

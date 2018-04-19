@@ -36,6 +36,12 @@
 			<artifactId>spring-boot-starter-jersey</artifactId>
 		</dependency>
 
+ <dependency>
+    <groupId>com.jayway.restassured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>2.9.0</version>
+</dependency>
+
 		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-jersey2-jaxrs</artifactId>
@@ -58,6 +64,12 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.10.19</version>
 		</dependency>
+		
+		<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>6.10</version>
+</dependency>
 	</dependencies>
 	<build>
 		<plugins>
