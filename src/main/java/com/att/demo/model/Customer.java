@@ -84,7 +84,7 @@ import io.swagger.annotations.ApiModelProperty;
 			if (getClass() != obj.getClass())
 				return false;
 			Account other = (Account) obj;
-			if (id != other.id)
+			if (id != other.getId())
 				return false;
 			return true;
 		}
