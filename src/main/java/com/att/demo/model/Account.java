@@ -81,5 +81,18 @@ public class Account implements Serializable {
 		return "Account [id=" + id + ", name=" + name + "]";
 	}
 
+	public void setFirstName(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setLastName(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
+
+
+Customer.Java
