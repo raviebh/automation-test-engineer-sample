@@ -69,29 +69,12 @@ public class CustomerResourceComponentTest {
 	}
 	
 	
-	// Test to verify creating account
-	
-		@Test
-		public void testCreateAccount_success() {
-			
-				
-			Customer customer = new Customer();
-			customer.setId(54321);
-			customer.setFirstName("test-create-first");
-			customer.setLastName("test-create-last");
-			
-			givenBaseSpec()
-				.body(customer)
-				.when()
-					.post(uri)
-					.then()
-						.statusCode(201);
-		}
+
 		
-		// Test to verify creating account --> conflict message
+		// Test to verify creating customer --> conflict message
 		
 		@Test
-		public void testCreateAccount_conflict() {
+		public void testCreateCustomer_conflict() {
 			
 				
 			Customer customer = new Customer();
@@ -107,14 +90,14 @@ public class CustomerResourceComponentTest {
 						.statusCode(409);
 		}
 		
-		public String uri1="/customers/3?api_key=%2Faccounts";
+		public String uri1="/customers/3?api_key=%2Fcustomers";
 		
 		
-		// Test to get single account
+		// Test to get single Customer, lets assume customer with id 3 exists
 		
 		
 		@Test
-		public void testFindAccount_success() {
+		public void testFindCustomer_success() {
 			
 				
 			givenBaseSpec()
@@ -124,12 +107,12 @@ public class CustomerResourceComponentTest {
 				.statusCode(200);
 		}
 		
-		// Test to get single account  --> not found
+		// Test to get single account  --> not found, , lets assume customer with id 4 does not exists
 		
-		public String uri2="/customers/4?api_key=%2Faccounts";
+		public String uri2="/customers/4?api_key=%2Fcustomers";
 		
 		@Test
-		public void testFindAccount_notFound() {
+		public void testFindCustomer_notFound() {
 			
 				
 			givenBaseSpec()

@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService{
 		return null;
 	}
 	
-	public Customer findByFirstName(String firstName, String lastName) {
+	public Customer findByName(String firstName, String lastName) {
 		for(Customer customer : customers){
 			if(customer.getFirstName().equalsIgnoreCase(firstName) && customer.getLastName().equalsIgnoreCase(lastName) ){
 				return customer;

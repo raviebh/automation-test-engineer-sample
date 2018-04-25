@@ -29,12 +29,12 @@ import com.att.demo.service.CustomerService;
 @Controller
 public class CustomerResourceImpl implements CustomerResource {
 	
-	public static final Logger logger = LoggerFactory.getLogger(AccountResourceImpl.class);
+	public static final Logger logger = LoggerFactory.getLogger(CustomerResourceImpl.class);
 
 	@Autowired
 	CustomerService customerService; //Service which will do all data retrieval/manipulation work
 
-	private static String baseUrl = "/accounts";
+	private static String baseUrl = "/customers";
 
 	@Override
 	public Response findAllCustomers() {
@@ -50,10 +50,10 @@ public class CustomerResourceImpl implements CustomerResource {
 	@Override
 	public Response getCustomer(long customerId) {
 		
-		logger.info("Fetching Account with id {}", customerId);
+		logger.info("Fetching Customer with id {}", customerId);
 		Customer customer = customerService.findById(customerId);
 		if (customer == null) {
-			logger.error("Account with id {} not found.", customerId);	
+			logger.error("Customer with id {} not found.", customerId);	
 			return Response.status(HttpStatus.NOT_FOUND.value()).entity(new CustomError("Customer with id " + customerId 
 					+ " not found", HttpStatus.NOT_FOUND.name())).build();			
 		}	
@@ -66,13 +66,13 @@ public class CustomerResourceImpl implements CustomerResource {
 
 	@Override
 	public Response createCustomer(Customer customer, UriInfo uriInfo) {
-		logger.info("Creating Account : {}", customer);
+		logger.info("Creating Customer : {}", customer);
 
 		if (customerService.isCustomerExist(customer)) {
-			logger.error("Unable to create. A Account with name {} already exist", customer.getFirstName());
+			logger.error("Unable to create. A Customer with name {} already exist", customer.getFirstName()," ",customer.getLastName());
 			//.............
-			return Response.status(HttpStatus.CONFLICT.value()).entity(new CustomError("Unable to create. A Account with name " + customer.getFirstName() 
-					+ " already exist", HttpStatus.CONFLICT.name())).build();
+			return Response.status(HttpStatus.CONFLICT.value()).entity(new CustomError("Unable to create. A Customer with name " + customer.getFirstName() 
+					+" "+customer.getLastName()+ " already exist", HttpStatus.CONFLICT.name())).build();
 			
 		}
 		customerService.saveCustomer(customer);

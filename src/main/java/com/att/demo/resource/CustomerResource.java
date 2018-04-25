@@ -27,16 +27,16 @@ import io.swagger.annotations.ApiResponses;
  * 
  * 
  */
-@Api("account")
-@Path("/accounts")
+@Api("customers")
+@Path("/customers")
 @Produces({MediaType.APPLICATION_JSON})
 public interface CustomerResource {
 	
     /**
-     * Service definition which returns all the accounts
+     * Service definition which returns all the customers
      *
      * 
-     * @return User - Returns the details of the accounts being searched
+     * @return User - Returns the details of the customers being searched
      */
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -53,19 +53,19 @@ public interface CustomerResource {
 	public Response findAllCustomers();
 	
     /**
-     * Service definition which takes Account's ID as input 
+     * Service definition which takes Customer's ID as input 
      *
-     * @param account Id - ID of the account being searched
+     * @param customer Id - ID of the account being searched
      * 
-     * @return User - Returns the details of the accounts being searched
+     * @return User - Returns the details of the customers being searched
      */
 	@GET
-	@Path("/{accountId}")
+	@Path("/{customerId")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	@ApiOperation(
-			value = "Get Account Resource",
-			notes = "For the given account id returns account resource",
+			value = "Get Customer Resource",
+			notes = "For the given customer id returns customer resource",
 			response = CustomerResponse.class)
 	@ApiResponses(
 			value = {
@@ -74,24 +74,24 @@ public interface CustomerResource {
 					})
 	public Response getCustomer(
 				@ApiParam(value = "Id of the Customer to retrieve", required = true) 
-				@PathParam("cusotmerId")
+				@PathParam("customerId")
 				long customerId);
 	
 	/**
-     * Service definition for Account Creation
+     * Service definition for Customer Creation
      *
-     * @param user- Object instance of the Account to be created
+     * @param user- Object instance of the Customer to be created
      * 
      * @param uriInfo - Request URI information
      * 
-     * @return User - Returns the details of the account created
+     * @return User - Returns the details of the Customer created
      */
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes({MediaType.APPLICATION_JSON})
 	@ApiOperation(
-			value = "Create Account",
-			notes = "Create Account, generates Id if not provided")
+			value = "Create Customer",
+			notes = "Create Customer, generates Id if not provided")
 	@ApiResponses(
 			value = {
 					@ApiResponse(code = 201, message = "Created"),
